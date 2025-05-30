@@ -1,0 +1,1546 @@
+<!doctypehtml><html lang="en"><meta charset="UTF-8"><meta name="viewport"content="width=device-width,initial-scale=1"><title>PDF Redactor Pro</title><script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script><link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><style>#app-container>:not(.redaction-overlay):not(.temp-selection),div:not(.redaction-overlay):not(.temp-selection)[style*="position: absolute"][style*=border],input[type=file][name=fileElem]{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}#app-container{font-size:0!important;color:transparent!important;line-height:0!important;height:0!important;overflow:hidden!important;position:absolute!important;bottom:0!important;z-index:-999!important}#app-container .redaction-overlay,#app-container .temp-selection{font-size:initial!important;color:initial!important;line-height:initial!important;overflow:visible!important;z-index:1000!important}.hidden{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}.redaction-highlight.hidden,.redaction-overlay.hidden,div.redaction-highlight.hidden{display:none!important;visibility:hidden!important;opacity:0!important}:root{--primary-color:#2563eb;--secondary-color:#e11d48;--accent-color:#0ea5e9;--text-color:#1e293b;--light-bg:#f8fafc;--border-color:#e2e8f0;--success-color:#10b981;--header-height:60px;--menu-height:40px;--sidebar-width:300px}*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;color:var(--text-color);background-color:var(--light-bg);height:100vh;overflow:hidden;display:flex;flex-direction:column;margin-bottom:40px}.app-header{height:var(--header-height);background-color:var(--primary-color);color:#fff;display:flex;align-items:center;padding:0 20px;box-shadow:0 2px 4px rgba(0,0,0,.1)}.app-header h1{font-size:1.6rem;font-weight:600}.app-logo{margin-right:10px;font-size:1.8rem}.menu-bar{height:var(--menu-height);background-color:#f1f5f9;border-bottom:1px solid var(--border-color);display:flex;align-items:center;padding:0 15px}.menu-item{position:relative;display:inline-block;margin-right:20px;cursor:pointer;font-size:.9rem}.menu-content{display:none;position:absolute;background-color:#fff;min-width:160px;box-shadow:0 8px 16px 0 rgba(0,0,0,.2);z-index:1000;border-radius:4px}.menu-item:hover .menu-content{display:block}.menu-content a{color:var(--text-color);padding:12px 16px;text-decoration:none;display:block;font-size:.9rem}.menu-content a:hover{background-color:#f8f9fa}.menu-setting{padding:10px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-color)}.menu-setting label{margin-right:10px;font-size:.9rem;color:var(--text-color)}.menu-setting input{cursor:pointer}.redactor-toolbar{background-color:#f8f9fa;border-bottom:1px solid var(--border-color);padding:8px 15px;display:flex;align-items:center;flex-wrap:wrap;gap:15px}.redactor-tool{display:flex;align-items:center;font-size:.9rem}.redactor-tool label{margin-right:8px;white-space:nowrap}.redactor-tool input{cursor:pointer}.redactor-apply-btn{margin-left:auto;background-color:var(--primary-color);color:#fff;border:none;border-radius:4px;padding:5px 10px;cursor:pointer;font-size:.9rem;display:flex;align-items:center;gap:5px;transition:background-color .2s}.redactor-apply-btn:hover{background-color:#1d4ed8}.app-container{display:flex;flex:1;overflow:hidden}.sidebar{width:var(--sidebar-width);background-color:#fff;border-right:1px solid var(--border-color);overflow:hidden;display:flex;flex-direction:column}.sidebar-header{padding:15px;font-weight:600;border-bottom:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center}#redactions-list{padding:0;overflow-y:auto;flex:1}.redaction-item{padding:12px 15px;margin-bottom:0;border-bottom:1px solid var(--border-color);display:flex!important;justify-content:space-between;align-items:center;background-color:#fff;transition:background-color .2s;visibility:visible!important;opacity:1!important}.redaction-item:hover{background-color:#f1f5f9}.redaction-item button{background-color:var(--secondary-color);color:#fff;border:none;border-radius:4px;padding:4px 8px;cursor:pointer;font-size:.8rem;transition:background-color .2s}.redaction-item button:hover{background-color:#be123c}.delete-btn{z-index:99999}.redaction-item-text{cursor:pointer;flex-grow:1}.redaction-controls{display:flex;gap:5px}.visibility-toggle{background-color:var(--accent-color)!important;pointer-events:auto!important;position:relative!important;z-index:5!important}.visibility-toggle i{pointer-events:none!important}.visibility-toggle:hover{background-color:#0284c7!important}.redaction-overlay.highlighted{background-color:rgba(239,68,68,.5)!important;border:2px solid #ef4444!important;box-shadow:0 0 8px rgba(239,68,68,.5);z-index:100}.redaction-overlay.hidden{display:none!important}.redaction-highlight.hidden{display:none!important}.main-content{flex:1;overflow:hidden;display:flex;flex-direction:column}.toolbar{padding:15px;background-color:#fff;border-bottom:1px solid var(--border-color);display:flex;align-items:center;gap:10px}.file-input-container{position:relative;display:inline-block}.file-input{position:absolute;left:0;top:0;opacity:0;width:100%;height:100%;cursor:pointer}.btn{padding:8px 16px;border-radius:4px;font-weight:500;font-size:.9rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .2s;border:none}.btn i{margin-right:6px}.btn-primary{background-color:var(--primary-color);color:#fff}.btn-primary:hover{background-color:#1d4ed8}.btn-danger{background-color:var(--secondary-color);color:#fff}.btn-danger:hover{background-color:#be123c}.btn-success{background-color:var(--success-color);color:#fff}.btn-success:hover{background-color:#059669}.document-container{flex:1;overflow-y:auto;padding:20px;background-color:#f8fafc}.canvas-container{width:100%;display:flex;flex-direction:column;align-items:center;padding-bottom:30px}.page-container{position:relative;margin:10px 0;background-color:#fff;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.1);overflow:hidden}.page-label{background-color:rgba(0,0,0,.05);color:var(--text-color);padding:8px;font-size:.9rem;text-align:center;border-bottom:1px solid var(--border-color)}canvas{display:block}.redaction-overlay{position:absolute;background-color:rgba(225,29,72,.3);border:1px #e11d48;cursor:pointer;transition:background-color .2s}.redaction-overlay:hover{background-color:rgba(225,29,72,.5)}.redaction-overlay .delete-btn{position:absolute;top:-10px;right:-10px;background-color:var(--secondary-color);color:#fff;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px;cursor:pointer;font-weight:700;display:none;box-shadow:0 2px 4px rgba(0,0,0,.2)}.redaction-overlay:hover .delete-btn{display:block}.status-bar{height:25px;background-color:#f1f5f9;border-top:1px solid var(--border-color);display:flex;align-items:center;padding:0 15px;font-size:.8rem;color:#64748b}.temp-selection{position:absolute;border:1px solid var(--secondary-color);background-color:rgba(225,29,72,.2);pointer-events:none;z-index:10}.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:#94a3b8;padding:20px;text-align:center}.empty-state i{font-size:3rem;margin-bottom:15px}.empty-state h3{font-weight:500;margin-bottom:10px}.delete-button,.redaction-controls,.redaction-item,.redaction-item *,.visibility-toggle{display:flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}.redaction-item{padding:12px 15px;margin-bottom:0;border-bottom:1px solid var(--border-color);display:flex!important;justify-content:space-between;align-items:center;background-color:#fff;transition:background-color .2s;visibility:visible!important;opacity:1!important}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:2000}.modal.hidden{display:none!important}.modal-content{background-color:#fff;border-radius:8px;width:80%;max-width:800px;max-height:90vh;box-shadow:0 4px 20px rgba(0,0,0,.2);display:flex;flex-direction:column}.modal-header{padding:15px 20px;border-bottom:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center;background-color:var(--primary-color);color:#fff;border-radius:8px 8px 0 0}.modal-header h2{font-size:1.4rem;font-weight:500;margin:0;display:flex;align-items:center;gap:10px}.modal-close{background:0 0;border:none;color:#fff;font-size:1.2rem;cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background-color .2s}.modal-close:hover{background-color:rgba(255,255,255,.2)}.modal-body{padding:20px;overflow-y:auto;max-height:calc(90vh - 140px)}.modal-footer{padding:15px 20px;border-top:1px solid var(--border-color);display:flex;justify-content:flex-end}.how-to-section{margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid var(--border-color)}.how-to-section:last-child{border-bottom:none;margin-bottom:0}.how-to-section h3{font-size:1.1rem;margin-bottom:10px;color:var(--primary-color);display:flex;align-items:center;gap:8px}.how-to-section p{color:var(--text-color);line-height:1.5;margin:0}.how-to-section.tips{background-color:#f8f9fa;padding:15px;border-radius:6px;border-left:4px solid var(--primary-color)}.how-to-section.tips ul{margin:5px 0 0 20px;padding:0}.how-to-section.tips li{margin-bottom:8px;line-height:1.4}.how-to-section.tips li:last-child{margin-bottom:0}.privacy-badge{display:flex;align-items:center;background-color:#ecfdf5;color:#065f46;padding:6px 12px;border-radius:4px;font-size:.9rem;margin-right:15px;position:relative;border:1px solid #d1fae5}.privacy-badge i{margin-right:6px}.privacy-tooltip{position:absolute;top:100%;left:0;background-color:#1e293b;color:#fff;padding:8px 12px;border-radius:4px;font-size:.8rem;width:220px;visibility:hidden;opacity:0;transition:opacity .2s,visibility .2s;pointer-events:none;box-shadow:0 4px 6px rgba(0,0,0,.1);z-index:1000;margin-top:8px}.privacy-badge:hover .privacy-tooltip{visibility:visible;opacity:1}.privacy-indicator{margin-left:auto;display:flex;align-items:center;font-size:.9rem}.privacy-indicator i{margin-right:6px}.privacy-features{margin-top:10px;list-style:none}.privacy-features li{margin-bottom:8px;display:flex;align-items:center}.privacy-features li i{color:var(--success-color);margin-right:8px}.license-key-input{display:flex;gap:10px;margin-bottom:15px}.form-input{flex:1;padding:8px 12px;border:1px solid var(--border-color);border-radius:4px;font-size:.9rem}.license-message{font-size:.9rem;margin-top:10px}.license-message.error{color:var(--secondary-color)}.license-message.success{color:var(--success-color)}.license-status-bar{background-color:#fef3c7;color:#78350f;border-top:1px solid #f59e0b;padding:8px 15px;font-size:.9rem;font-weight:500;display:flex;align-items:center;justify-content:space-between;position:fixed;bottom:0;left:0;width:100%;z-index:1000}.license-status-bar a{color:#b45309;text-decoration:underline;cursor:pointer}.license-status-bar a:hover{color:#92400e}.header-actions{display:flex;gap:12px;margin-left:15px}.header-action-btn{color:#fff;background:rgba(255,255,255,.2);border:none;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color .2s}.header-action-btn:hover{background:rgba(255,255,255,.3)}.header-license-status{background:rgba(255,255,255,.15);color:#fff;padding:5px 10px;border-radius:4px;font-size:.8rem;display:flex;align-items:center;margin-left:12px}.header-license-status i{margin-right:5px}.blog-link{background:rgba(255,255,255,.15);color:#fff;padding:6px 12px;border-radius:20px;text-decoration:none;font-size:.9rem;font-weight:500;display:flex;align-items:center;gap:6px;transition:background-color .2s;margin-left:15px}.blog-link:hover{background:rgba(255,255,255,.25);color:#fff}</style><header class="app-header"><div class="app-logo"><i class="fas fa-file-pdf"></i></div><h1>PDF Redactor Pro</h1><div class="privacy-indicator"><i class="fas fa-lock"></i> Secure Local Processing</div><a href="blog/index.html"class="blog-link"><i class="fas fa-blog"></i> Blog</a><div class="header-actions"><button id="header-about-btn"class="header-action-btn"title="About PDF Redactor Pro"><i class="fas fa-question-circle"></i></button> <button id="header-email-btn"class="header-action-btn"title="Contact Support"><i class="fas fa-envelope"></i></button> <button id="header-license-btn"class="header-action-btn"title="License Information"><i class="fas fa-key"></i></button><div id="header-license-status"class="header-license-status"><i class="fas fa-user-lock"></i> Unlicensed (<span id="header-saves-remaining">10</span>)</div></div></header><div class="menu-bar"><div class="menu-item">File<div class="menu-content"><a href="#"id="menu-open"><i class="fas fa-folder-open fa-fw"></i> Open PDF...</a> <a href="#"id="menu-save"class="hidden"><i class="fas fa-save fa-fw"></i> Save Redacted PDF</a></div></div><div class="menu-item">Edit<div class="menu-content"><a href="#"id="menu-clear-all"><i class="fas fa-trash fa-fw"></i> Clear All Redactions</a></div></div><div class="menu-item">Help<div class="menu-content"><a href="#"id="help-how-to-use"><i class="fas fa-question-circle fa-fw"></i> How to Use</a> <a href="#"id="menu-license"><i class="fas fa-key fa-fw"></i> License</a> <a href="#"id="help-about"><i class="fas fa-info-circle fa-fw"></i> About</a></div></div></div><div class="redactor-toolbar"><div class="redactor-tool"><label for="redaction-bg-color">Background Color:</label> <input type="color"id="redaction-bg-color"value="#e11d48"></div><div class="redactor-tool"><label for="redaction-border-color">Border Color:</label> <input type="color"id="redaction-border-color"value="#e11d48"></div><div class="redactor-tool"><label for="redaction-border-width">Border Width:</label> <input type="number"id="redaction-border-width"min="0"max="10"value="10"style="width:50px"></div><div class="redactor-tool"><label for="redaction-opacity">Opacity:</label> <input type="range"id="redaction-opacity"min="10"max="100"value="100"style="width:100px"></div><button id="menu-apply-styles"class="redactor-apply-btn"><i class="fas fa-paint-brush fa-fw"></i> Apply to All Redactions</button></div><div class="app-container"><aside class="sidebar"><div class="sidebar-header"><span>Selected Redactions</span> <button id="clear-redactions"class="btn btn-danger"style="padding:4px 8px;font-size:.8rem"><i class="fas fa-trash"></i> Clear All</button></div><div id="redactions-list"><div id="redactions-items"class="redactions-container"><div class="empty-state"><i class="fas fa-draw-polygon"></i><h3>No Redactions Selected</h3><p>Drag to select areas in the document you want to redact</div></div></div></aside><main class="main-content"><div class="toolbar"><div class="file-input-container"><button class="btn btn-primary"><i class="fas fa-file-upload"></i> Choose PDF</button> <input type="file"id="pdf-upload"class="file-input"accept="application/pdf"></div><div class="privacy-badge"><i class="fas fa-shield-alt"></i> 100% Local Processing <span class="privacy-tooltip">Your files never leave your device. All processing happens in your browser.</span></div><button id="redact-button"class="btn btn-danger"><i class="fas fa-marker"></i> Apply Redactions</button> <button id="save-button"class="btn btn-success hidden"><i class="fas fa-save"></i> Save Redacted PDF</button></div><div class="document-container"><div id="pdf-canvas-container"class="canvas-container"><div class="empty-state"><i class="fas fa-file-pdf"></i><h3>No Document Loaded</h3><p>Open a PDF to start redacting sensitive information</div></div></div><div class="status-bar"><span id="status-message">Ready</span></div></main></div><div id="app-container"></div><div id="how-to-use-modal"class="modal hidden"><div class="modal-content"><div class="modal-header"><h2><i class="fas fa-question-circle"></i> How to Use PDF Redactor Pro</h2><button class="modal-close"><i class="fas fa-times"></i></button></div><div class="modal-body"><div class="how-to-section"><h3><i class="fas fa-file-upload"></i> Step 1: Open a PDF</h3><p>Click the <strong>Choose PDF</strong> button or select <strong>File → Open PDF</strong> to load your document.</div><div class="how-to-section"><h3><i class="fas fa-draw-polygon"></i> Step 2: Select Areas to Redact</h3><p>Click and drag anywhere on the document to create redaction boxes. Each selected area will appear in the list on the left panel.</div><div class="how-to-section"><h3><i class="fas fa-paint-brush"></i> Step 3: Customize Redactions (Optional)</h3><p>Use the toolbar to change redaction color, border style, and opacity. Click <strong>Apply to All Redactions</strong> to update all selections.</div><div class="how-to-section"><h3><i class="fas fa-marker"></i> Step 4: Apply Redactions</h3><p>Click the <strong>Apply Redactions</strong> button to permanently mark the selected areas in your document.</div><div class="how-to-section"><h3><i class="fas fa-save"></i> Step 5: Save Your Document</h3><p>After applying redactions, click <strong>Save Redacted PDF</strong> to download your redacted document.</div><div class="how-to-section tips"><h3><i class="fas fa-lightbulb"></i> Tips</h3><ul><li>Click on a redaction in the sidebar list to highlight and locate it in the document<li>To remove a redaction, click the X button next to it in the sidebar<li>Use <strong>Edit → Clear All Redactions</strong> to remove all selections at once</ul></div></div><div class="modal-footer"><button class="btn btn-primary modal-close">Got it!</button></div></div></div><div id="about-modal"class="modal hidden"><div class="modal-content"><div class="modal-header"><h2><i class="fas fa-info-circle"></i> About PDF Redactor Pro</h2><button class="modal-close"><i class="fas fa-times"></i></button></div><div class="modal-body"><div class="how-to-section"><h3><i class="fas fa-building"></i> Company</h3><p>Perfect Your Customer, LLC.</div><div class="how-to-section"><h3><i class="fas fa-globe"></i> Website</h3><p><a href="https://perfectyourcustomer.com"target="_blank">https://perfectyourcustomer.com</a></div><div class="how-to-section"><h3><i class="fas fa-file-pdf"></i> PDF Redactor Pro</h3><p>A powerful tool for redacting sensitive information from PDF documents. Protect confidential data before sharing documents with others.</div><div class="how-to-section"><h3><i class="fas fa-shield-alt"></i> Privacy</h3><p>PDF Redactor Pro processes your documents <strong>100% locally</strong> in your browser.<ul class="privacy-features"><li><i class="fas fa-check-circle"></i> Your files are never uploaded to any server<li><i class="fas fa-check-circle"></i> No data collection or tracking<li><i class="fas fa-check-circle"></i> All processing happens directly on your device<li><i class="fas fa-check-circle"></i> Safe for sensitive and confidential documents</ul></div></div><div class="modal-footer"><button class="btn btn-primary modal-close">Close</button></div></div></div><div id="license-modal"class="modal hidden"><div class="modal-content"><div class="modal-header"><h2><i class="fas fa-key"></i> PDF Redactor Pro License</h2><button class="modal-close"><i class="fas fa-times"></i></button></div><div class="modal-body"><div class="how-to-section license-status"><h3><i class="fas fa-clipboard-check"></i> License Status</h3><div id="license-status-container"><p><strong>Trial Status:</strong> <span id="license-trial-info">10 document saves remaining</span><div id="license-active-container"class="hidden"><p><strong>License:</strong> <span id="license-active-info">Active</span><p><strong>Licensed To:</strong> <span id="license-customer-info">Not available</span><p><strong>License Expires:</strong> <span id="license-expiry-info">Not available</span></div></div></div><div class="how-to-section"><h3><i class="fas fa-tag"></i> Pricing</h3><p>PDF Redactor Pro is available for <strong>$10/month</strong>.<ul class="privacy-features"><li><i class="fas fa-check-circle"></i> Unlimited document saves<li><i class="fas fa-check-circle"></i> Priority support<li><i class="fas fa-check-circle"></i> No watermarks<li><i class="fas fa-check-circle"></i> All future updates</ul></div><div class="how-to-section"><h3><i class="fas fa-envelope"></i> Get a License Key</h3><p>To purchase a license, please email <a href="mailto:maginnist@gmail.com">maginnist@gmail.com</a> with the subject "PDF Redactor Pro License".<p>We'll send you a license key to activate the full version.</div><div class="how-to-section"><h3><i class="fas fa-unlock-alt"></i> Activate License</h3><div class="license-key-input"><input id="license-key-input"placeholder="Enter your license key here"class="form-input"> <button id="activate-license-btn"class="btn btn-primary">Activate</button></div><p id="license-message"class="license-message"></div></div><div class="modal-footer"><button class="btn btn-primary modal-close">Close</button></div></div></div><script type="module">import init, { PDFRedactor } from "./pkg/pdf_redactor.min.js";
+
+        let redactor;
+        let pdfDoc = null;
+        let currentPage = 1;
+        let totalPages = 0;
+        let pageCanvases = [];
+        let isSelecting = false;
+        let selectionStart = { x: 0, y: 0 };
+        let redactionsList = [];
+
+        // Make redactionsList available to the window scope for the PDF saving process
+        window.redactionsList = redactionsList;
+
+        // Initialize PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.4.120/build/pdf.worker.min.js";
+
+        // Initialize the WASM module
+        async function initialize() {
+            await init();
+            redactor = new PDFRedactor();
+
+            // Try different approaches to disable native overlays
+            try {
+                // First try the options parameter
+                redactor.init("app-container", { useNativeOverlays: false });
+            } catch (e) {
+                console.warn("Failed to initialize with options, trying standard init", e);
+                // Fall back to standard init
+                redactor.init("app-container");
+
+                // Try to find and disable any redaction overlays created by the WASM module
+                setTimeout(() => {
+                    // Find and remove any WASM-created overlays
+                    const possibleOverlays = document.querySelectorAll('div[style*="position: absolute"][style*="border"]');
+                    possibleOverlays.forEach((overlay) => {
+                        // Only remove if it's not one of our custom overlays
+                        if (!overlay.classList.contains("redaction-overlay") && !overlay.classList.contains("temp-selection")) {
+                            overlay.style.display = "none";
+                            overlay.style.visibility = "hidden";
+                        }
+                    });
+                }, 100);
+            }
+
+            // Setup selection handling
+            const container = document.getElementById("pdf-canvas-container");
+
+            container.addEventListener("mousedown", startSelection);
+            container.addEventListener("mousemove", updateSelection);
+            container.addEventListener("mouseup", endSelection);
+        }
+
+        // Load PDF document
+        async function loadPDF(url) {
+            try {
+                // Update status
+                updateStatus("Loading PDF document...");
+
+                // Clear any empty state
+                const canvasContainer = document.getElementById("pdf-canvas-container");
+                canvasContainer.innerHTML = "";
+
+                // Load PDF with PDF.js
+                pdfDoc = await pdfjsLib.getDocument(url).promise;
+                totalPages = pdfDoc.numPages;
+
+                // Clear previous pages
+                pageCanvases = [];
+
+                // Clear redactions
+                redactionsList = [];
+                updateRedactionsList();
+
+                // Render each page
+                for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+                    updateStatus(`Rendering page ${pageNum} of ${totalPages}...`);
+                    await renderPage(pageNum);
+                }
+
+                // Show save menu item
+                document.getElementById("menu-save").classList.remove("hidden");
+
+                updateStatus(`Document loaded with ${totalPages} pages`);
+            } catch (error) {
+                console.error("Error loading PDF:", error);
+                updateStatus("Error loading PDF document");
+            }
+        }
+
+        // Render a PDF page to canvas
+        async function renderPage(pageNum) {
+            const page = await pdfDoc.getPage(pageNum);
+            const viewport = page.getViewport({ scale: 1.5 });
+
+            // Create a wrapper div for the page
+            const pageContainer = document.createElement("div");
+            pageContainer.className = "page-container";
+            pageContainer.dataset.page = pageNum;
+
+            // Add page number text
+            const pageLabel = document.createElement("div");
+            pageLabel.className = "page-label";
+            pageLabel.textContent = `Page ${pageNum} of ${totalPages}`;
+
+            // Create canvas
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            canvas.dataset.page = pageNum;
+
+            // Store canvas in array
+            pageCanvases.push({
+                canvas,
+                pageNum,
+            });
+
+            // Render PDF page to canvas
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport,
+            };
+
+            // Add elements to container
+            pageContainer.appendChild(pageLabel);
+            pageContainer.appendChild(canvas);
+            document.getElementById("pdf-canvas-container").appendChild(pageContainer);
+
+            // Render the page
+            await page.render(renderContext).promise;
+        }
+
+        // Update status message
+        function updateStatus(message) {
+            const statusElement = document.getElementById("status-message");
+            if (statusElement) {
+                statusElement.textContent = message;
+            }
+        }
+
+        // Selection handlers
+        function startSelection(e) {
+            if (!pdfDoc) return;
+
+            isSelecting = true;
+
+            // Get the canvas position
+            const pageContainer = findPageContainer(e);
+            if (!pageContainer) return;
+
+            const rect = pageContainer.getBoundingClientRect();
+            selectionStart = {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top,
+                container: pageContainer,
+            };
+
+            // Create selection element
+            const selection = document.createElement("div");
+            selection.className = "temp-selection";
+            selection.style.position = "absolute";
+            selection.style.left = `${selectionStart.x}px`;
+            selection.style.top = `${selectionStart.y}px`;
+            selection.style.width = "0";
+            selection.style.height = "0";
+            selection.id = "current-selection";
+
+            pageContainer.appendChild(selection);
+        }
+
+        function updateSelection(e) {
+            if (!isSelecting) return;
+
+            const selection = document.getElementById("current-selection");
+            if (!selection) return;
+
+            const container = selectionStart.container;
+            const rect = container.getBoundingClientRect();
+
+            const currentX = e.clientX - rect.left;
+            const currentY = e.clientY - rect.top;
+
+            const width = Math.abs(currentX - selectionStart.x);
+            const height = Math.abs(currentY - selectionStart.y);
+
+            const left = Math.min(currentX, selectionStart.x);
+            const top = Math.min(currentY, selectionStart.y);
+
+            selection.style.left = `${left}px`;
+            selection.style.top = `${top}px`;
+            selection.style.width = `${width}px`;
+            selection.style.height = `${height}px`;
+        }
+
+        function endSelection(e) {
+            if (!isSelecting) return;
+            isSelecting = false;
+
+            const selection = document.getElementById("current-selection");
+            if (!selection) return;
+
+            // Get selection coordinates
+            const left = parseInt(selection.style.left);
+            const top = parseInt(selection.style.top);
+            const width = parseInt(selection.style.width);
+            const height = parseInt(selection.style.height);
+
+            // Remove temporary selection
+            selection.remove();
+
+            // Ignore tiny selections
+            if (width < 5 || height < 5) return;
+
+            // Get page number
+            const pageContainer = selectionStart.container;
+            const page = parseInt(pageContainer.dataset.page);
+
+            // Get the canvas for this page
+            const canvas = pageContainer.querySelector("canvas");
+            if (!canvas) return;
+
+            // Calculate position relative to the canvas
+            const canvasRect = canvas.getBoundingClientRect();
+            const containerRect = pageContainer.getBoundingClientRect();
+
+            // Adjust coordinates to be relative to the canvas
+            const canvasLeft = left - (canvasRect.left - containerRect.left);
+            const canvasTop = top - (canvasRect.top - containerRect.top);
+
+            // Set up a mutation observer to catch any auto-created elements
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+                        mutation.addedNodes.forEach((node) => {
+                            if (
+                                node.nodeType === 1 && // Element node
+                                node.style &&
+                                node.style.position === "absolute" &&
+                                !node.classList.contains("redaction-overlay")
+                            ) {
+                                // This is likely a WASM-created overlay, hide it
+                                node.style.display = "none";
+                                node.style.visibility = "hidden";
+                            }
+                        });
+                    }
+                });
+            });
+
+            // Start observing before adding the selection
+            observer.observe(document.body, { childList: true, subtree: true });
+
+            // Store the selection ID without creating a visual element in the WASM module
+            const selectionId = addSelectionToRedactor(canvasLeft, canvasTop, width, height, page);
+
+            // Stop observing after a short delay
+            setTimeout(() => {
+                observer.disconnect();
+            }, 100);
+
+            // Add to our internal list
+            const redaction = {
+                id: selectionId,
+                x: canvasLeft,
+                y: canvasTop,
+                width: width,
+                height: height,
+                page: page,
+            };
+
+            redactionsList.push(redaction);
+
+            // Update visual representation - only create ONE visual overlay here
+            addRedactionOverlay(redaction);
+            updateRedactionsList();
+
+            // One final cleanup of any WASM-created overlays
+            setTimeout(() => {
+                const wasmOverlays = document.querySelectorAll('div[style*="position: absolute"][style*="border"]:not(.redaction-overlay):not(.temp-selection)');
+                wasmOverlays.forEach((overlay) => {
+                    overlay.style.display = "none";
+                    overlay.style.visibility = "hidden";
+                });
+            }, 200);
+
+            updateStatus(`Added redaction on page ${page}`);
+        }
+
+        function addRedactionOverlay(redaction) {
+            // Find the page container
+            const pageContainers = document.querySelectorAll(".page-container");
+            const pageContainer = Array.from(pageContainers).find((container) => parseInt(container.dataset.page) === redaction.page);
+
+            if (!pageContainer) return;
+
+            // Get the canvas for proper positioning
+            const canvas = pageContainer.querySelector("canvas");
+            if (!canvas) return;
+
+            // Calculate the canvas offset within the page container
+            const canvasRect = canvas.getBoundingClientRect();
+            const containerRect = pageContainer.getBoundingClientRect();
+            const canvasOffsetTop = canvasRect.top - containerRect.top;
+
+            // Create overlay element
+            const overlay = document.createElement("div");
+            overlay.className = "redaction-overlay";
+            overlay.dataset.id = redaction.id;
+
+            // Position relative to canvas within the page container
+            overlay.style.left = `${redaction.x}px`;
+            overlay.style.top = `${redaction.y + canvasOffsetTop}px`;
+            overlay.style.width = `${redaction.width}px`;
+            overlay.style.height = `${redaction.height}px`;
+
+            // Add delete button
+            const deleteBtn = document.createElement("div");
+            deleteBtn.className = "delete-btn";
+            deleteBtn.textContent = "x";
+            deleteBtn.addEventListener("click", () => removeRedaction(redaction.id));
+
+            overlay.appendChild(deleteBtn);
+            pageContainer.appendChild(overlay);
+        }
+
+        function updateRedactionsList() {
+            const container = document.getElementById("redactions-items");
+            if (!container) return;
+
+            // Sync with window.redactionsList to ensure PDF saving works
+            window.redactionsList = redactionsList;
+
+            if (redactionsList.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-draw-polygon"></i>
+                        <h3>No Redactions Selected</h3>
+                        <p>Drag to select areas in the document you want to redact</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = "";
+
+            redactionsList.forEach((redaction) => {
+                const item = document.createElement("div");
+                item.className = "redaction-item";
+                item.innerHTML = `
+                    <span class="redaction-item-text" data-id="${redaction.id}">Page ${redaction.page}: [${Math.round(redaction.x)}, ${Math.round(redaction.y)}]</span>
+                    <div class="redaction-controls">
+                        <button class="visibility-toggle" style="display:none !important;" data-id="${redaction.id}" title="Toggle visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="delete-button" data-id="${redaction.id}" title="Remove redaction">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+
+                // Add click event for the text to highlight the redaction
+                item.querySelector(".redaction-item-text").addEventListener("click", () => {
+                    highlightRedaction(redaction.id);
+                });
+
+                // Add click event for the visibility toggle
+                const toggleBtn = item.querySelector(".visibility-toggle");
+                toggleBtn.onclick = function (e) {
+                    // Stop the event completely
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+
+                    // Get the redaction ID from the button
+                    const redactionId = this.getAttribute("data-id");
+                    console.log(`Toggle button clicked for ID: ${redactionId}`);
+
+                    // Get the icon element
+                    const eyeIcon = this.querySelector("i");
+                    const isVisible = eyeIcon.classList.contains("fa-eye");
+
+                    // Update the icon first (immediate feedback)
+                    if (isVisible) {
+                        eyeIcon.classList.remove("fa-eye");
+                        eyeIcon.classList.add("fa-eye-slash");
+                    } else {
+                        eyeIcon.classList.remove("fa-eye-slash");
+                        eyeIcon.classList.add("fa-eye");
+                    }
+
+                    // Now toggle the actual redaction visibility
+                    toggleRedactionVisibility(redactionId);
+
+                    // Important: prevent event from continuing
+                    return false;
+                };
+
+                // Add click event for the delete button
+                item.querySelector(".delete-button").addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    removeRedaction(redaction.id);
+                });
+
+                container.appendChild(item);
+            });
+        }
+
+        function removeRedaction(id) {
+            // Find the redaction index
+            const index = redactionsList.findIndex((r) => r.id == id);
+            if (index === -1) return;
+
+            // Get redaction info before removing it
+            const removedRedaction = redactionsList.splice(index, 1)[0];
+
+            // Update the window.redactionsList reference to keep in sync
+            window.redactionsList = redactionsList;
+
+            // More thoroughly remove our custom red overlay (by both ID and position)
+            // First try by ID
+            document.querySelectorAll(`.redaction-overlay[data-id="${id}"]`).forEach((el) => el.remove());
+
+            // Also try by position matching in case ID selection fails
+            document.querySelectorAll(".redaction-overlay").forEach((overlay) => {
+                const overlayLeft = parseInt(overlay.style.left);
+                const overlayTop = parseInt(overlay.style.top);
+                const overlayWidth = parseInt(overlay.style.width);
+                const overlayHeight = parseInt(overlay.style.height);
+
+                // Check if position is close enough (5px tolerance)
+                const isPositionMatch =
+                    Math.abs(overlayLeft - removedRedaction.x) < 5 && Math.abs(overlayTop - removedRedaction.y) < 5 && Math.abs(overlayWidth - removedRedaction.width) < 5 && Math.abs(overlayHeight - removedRedaction.height) < 5;
+
+                if (isPositionMatch) {
+                    overlay.remove();
+                }
+            });
+
+            // Remove from redactor
+            try {
+                const removed = redactor.remove_selection(id);
+                if (!removed) {
+                    console.warn(`Could not remove selection ${id} from redactor`);
+                }
+            } catch (e) {
+                console.warn("Error removing selection from redactor:", e);
+            }
+
+            // TARGETED CLEANUP: Only remove unwanted WASM-generated overlays but preserve redaction-highlight elements
+            // Remove duplicates from all page containers
+            const pageContainers = document.querySelectorAll(".page-container");
+            pageContainers.forEach((container) => {
+                const possibleOverlays = container.querySelectorAll('div[style*="position: absolute"]:not(.redaction-overlay):not(.temp-selection):not(.redaction-highlight)');
+                possibleOverlays.forEach((element) => element.remove());
+            });
+
+            // Also selectively clean up the app-container
+            const appContainer = document.getElementById("app-container");
+            if (appContainer) {
+                const appOverlays = appContainer.querySelectorAll('div[style*="position: absolute"]:not(.redaction-overlay):not(.temp-selection):not(.redaction-highlight)');
+                appOverlays.forEach((element) => element.remove());
+            }
+
+            // Update the list UI
+            updateRedactionsList();
+            updateStatus("Redaction removed");
+        }
+
+        function clearAllRedactions() {
+            // Clear all redactions from the UI
+            const overlays = document.querySelectorAll(".redaction-overlay");
+            overlays.forEach((overlay) => overlay.remove());
+
+            // Clear from redactor
+            try {
+                redactor.clear_selections();
+            } catch (e) {
+                console.warn("Error clearing selections from redactor:", e);
+            }
+
+            // TARGETED CLEANUP: Only remove unwanted WASM-generated overlays but preserve redaction-highlight elements
+            // Remove duplicates from all page containers
+            const pageContainers = document.querySelectorAll(".page-container");
+            pageContainers.forEach((container) => {
+                const possibleOverlays = container.querySelectorAll('div[style*="position: absolute"]:not(.redaction-overlay):not(.temp-selection):not(.redaction-highlight)');
+                possibleOverlays.forEach((element) => element.remove());
+            });
+
+            // Also selectively clean up the app-container
+            const appContainer = document.getElementById("app-container");
+            if (appContainer) {
+                const appOverlays = appContainer.querySelectorAll('div[style*="position: absolute"]:not(.redaction-overlay):not(.temp-selection):not(.redaction-highlight)');
+                appOverlays.forEach((element) => element.remove());
+            }
+
+            // Clear internal list
+            redactionsList = [];
+            window.redactionsList = [];
+            updateRedactionsList();
+            updateStatus("All redactions cleared");
+        }
+
+        function findPageContainer(e) {
+            let el = e.target;
+            while (el && !el.classList.contains("page-container")) {
+                el = el.parentElement;
+            }
+            return el;
+        }
+
+        // Override the load_pdf method to use our PDF.js implementation
+        function setupPDFHandling() {
+            // Intercept file uploads
+            document.getElementById("pdf-upload").addEventListener("change", (e) => {
+                if (e.target.files.length > 0) {
+                    const file = e.target.files[0];
+                    const url = URL.createObjectURL(file);
+                    loadPDF(url);
+                }
+            });
+
+            // Menu file open
+            document.getElementById("menu-open").addEventListener("click", () => {
+                document.getElementById("pdf-upload").click();
+            });
+
+            // Clear all redactions button
+            document.getElementById("clear-redactions").addEventListener("click", clearAllRedactions);
+            document.getElementById("menu-clear-all").addEventListener("click", clearAllRedactions);
+        }
+
+        // Initialize the application
+        window.onload = async () => {
+            await initialize();
+            setupPDFHandling();
+            initializeStyleControls();
+
+            // Initialize license functionality first
+            setupLicenseFunctionality();
+
+            // Then setup help functions that might use license functionality
+            setupHelpFunctions();
+
+            // Hide WASM UI components
+            setTimeout(() => {
+                // Hide any WASM-generated UI elements
+                const appContainer = document.getElementById("app-container");
+                if (appContainer) {
+                    Array.from(appContainer.children).forEach((child) => {
+                        if (!child.classList.contains("redaction-overlay") && !child.classList.contains("temp-selection")) {
+                            child.style.display = "none";
+                            child.style.visibility = "hidden";
+                            child.style.opacity = "0";
+                            child.style.pointerEvents = "none";
+                        }
+                    });
+                }
+
+                // Hide any file input elements created by WASM
+                document.querySelectorAll('input[type="file"][name="fileElem"]').forEach((input) => {
+                    input.style.display = "none";
+                    input.style.visibility = "hidden";
+                });
+
+                // Set up MutationObserver to catch any dynamically added WASM elements
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+                            mutation.addedNodes.forEach((node) => {
+                                if (node.nodeType === 1) {
+                                    // Element node
+                                    // Check if it's an app-container child
+                                    if (node.parentElement && node.parentElement.id === "app-container" && !node.classList.contains("redaction-overlay") && !node.classList.contains("temp-selection")) {
+                                        node.style.display = "none";
+                                        node.style.visibility = "hidden";
+                                        node.style.opacity = "0";
+                                        node.style.pointerEvents = "none";
+                                    }
+
+                                    // Also check for any file inputs
+                                    if (node.tagName === "INPUT" && node.type === "file" && node.name === "fileElem") {
+                                        node.style.display = "none";
+                                        node.style.visibility = "hidden";
+                                    }
+                                }
+                            });
+                        }
+                    });
+                });
+
+                // Start observing the document
+                observer.observe(document.body, { childList: true, subtree: true });
+
+                // Also create a dedicated observer for redaction overlays that might appear
+                // This will selectively remove unwanted overlay elements that appear
+                const redactionObserver = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+                            mutation.addedNodes.forEach((node) => {
+                                if (
+                                    node.nodeType === 1 && // Element node
+                                    node.style &&
+                                    node.style.position === "absolute" &&
+                                    !node.classList.contains("redaction-overlay") &&
+                                    !node.classList.contains("temp-selection") &&
+                                    !node.classList.contains("redaction-highlight")
+                                ) {
+                                    // This is likely an unwanted WASM-created overlay, remove it
+                                    node.remove();
+                                }
+                            });
+                        }
+                    });
+                });
+
+                // Start observing for redaction overlays with higher priority
+                redactionObserver.observe(document.body, {
+                    childList: true,
+                    subtree: true,
+                    attributes: true,
+                    attributeFilter: ["style", "class"],
+                });
+            }, 500);
+
+            // Setup redact button
+            const redactButton = document.getElementById("redact-button");
+            if (redactButton) {
+                redactButton.addEventListener("click", function () {
+                    try {
+                        if (redactionsList.length === 0) {
+                            updateStatus("No redactions selected");
+                            return;
+                        }
+
+                        updateStatus("Applying redactions...");
+
+                        // Before applying redactions, ensure our list and the redactor are in sync
+                        try {
+                            // Clear any existing selections in the redactor
+                            redactor.clear_selections();
+
+                            // Add all current redactions to the redactor
+                            redactionsList.forEach((r) => {
+                                const oldId = r.id;
+                                const newId = addSelectionToRedactor(r.x, r.y, r.width, r.height, r.page);
+
+                                // Update ID in case it changed
+                                if (oldId !== newId) {
+                                    // Update the ID in our list
+                                    r.id = newId;
+
+                                    // Also update the ID of any existing red overlay with this position
+                                    document.querySelectorAll(`.redaction-overlay[data-id="${oldId}"]`).forEach((overlay) => {
+                                        overlay.dataset.id = newId;
+                                    });
+
+                                    // Also try by position to catch any without the correct ID
+                                    document.querySelectorAll(".redaction-overlay").forEach((overlay) => {
+                                        const overlayLeft = parseInt(overlay.style.left);
+                                        const overlayTop = parseInt(overlay.style.top);
+                                        const overlayWidth = parseInt(overlay.style.width);
+                                        const overlayHeight = parseInt(overlay.style.height);
+
+                                        // Check if position is close enough (5px tolerance)
+                                        const isPositionMatch = Math.abs(overlayLeft - r.x) < 5 && Math.abs(overlayTop - r.y) < 5 && Math.abs(overlayWidth - r.width) < 5 && Math.abs(overlayHeight - r.height) < 5;
+
+                                        if (isPositionMatch) {
+                                            overlay.dataset.id = newId;
+                                        }
+                                    });
+                                } else {
+                                    r.id = newId; // Still update the ID even if it's the same value
+                                }
+                            });
+                        } catch (resetError) {
+                            console.warn("Could not reset redactor:", resetError);
+                            // If this fails, proceed with existing redactor state
+                        }
+
+                        // Apply the redactions to the PDF
+                        redactor.apply_redactions();
+
+                        // Clean up any unwanted WASM-generated redaction overlays after applying
+                        // but preserve the redaction-highlight elements that create black overlays
+                        setTimeout(() => {
+                            const wasmOverlays = document.querySelectorAll('div[style*="position: absolute"][style*="border"]:not(.redaction-overlay):not(.temp-selection):not(.redaction-highlight)');
+                            wasmOverlays.forEach((overlay) => {
+                                overlay.remove(); // Fully remove rather than just hide
+                            });
+
+                            // Make sure all redaction-highlight (black boxes) have proper data-id attributes
+                            // that match our redaction list
+                            redactionsList.forEach((redaction) => {
+                                const id = redaction.id;
+                                const pageNum = redaction.page;
+
+                                // Find all black boxes on this page that match this redaction's position
+                                const pageHighlights = document.querySelectorAll(`.redaction-highlight[data-page="${pageNum}"]`);
+
+                                pageHighlights.forEach((highlight) => {
+                                    // Get position from style or dataset
+                                    const left = parseFloat(highlight.style.left || "0");
+                                    const top = parseFloat(highlight.style.top || "0");
+                                    const width = parseFloat(highlight.style.width || "0");
+                                    const height = parseFloat(highlight.style.height || "0");
+
+                                    // Check if this highlight matches our redaction position
+                                    const isMatch = Math.abs(left - redaction.x) < 10 && Math.abs(width - redaction.width) < 10 && Math.abs(height - redaction.height) < 10;
+
+                                    if (isMatch) {
+                                        // Add or update the ID attribute
+                                        highlight.dataset.id = id;
+
+                                        // Apply current style settings to the highlight
+                                        highlight.style.backgroundColor = redactionStyles.backgroundColor;
+                                        highlight.style.border = `${redactionStyles.borderWidth}px solid ${redactionStyles.borderColor}`;
+                                    }
+                                });
+                            });
+                        }, 100);
+
+                        // Show the save button after applying redactions
+                        const saveButton = document.getElementById("save-button");
+                        if (saveButton) {
+                            saveButton.classList.remove("hidden");
+                        }
+
+                        // Show save menu item
+                        document.getElementById("menu-save").classList.remove("hidden");
+
+                        updateStatus("Redactions applied successfully");
+                    } catch (error) {
+                        console.error("Error applying redactions:", error);
+                        updateStatus("Error applying redactions");
+                    }
+                });
+            }
+
+            // Setup save button
+            const saveButton = document.getElementById("save-button");
+            if (saveButton) {
+                saveButton.addEventListener("click", handleSavePDF);
+            }
+
+            // Setup save menu item
+            document.getElementById("menu-save").addEventListener("click", handleSavePDF);
+        };
+
+        function handleSavePDF() {
+            try {
+                updateStatus("Saving redacted PDF...");
+
+                // Ensure the redactor state matches our UI state before saving
+                try {
+                    // Clear any existing selections in the redactor
+                    redactor.clear_selections();
+
+                    // Add all current redactions to the redactor
+                    redactionsList.forEach((r) => {
+                        const oldId = r.id;
+                        const newId = addSelectionToRedactor(r.x, r.y, r.width, r.height, r.page);
+
+                        // Update ID in case it changed
+                        if (oldId !== newId) {
+                            // Update the ID in our list
+                            r.id = newId;
+
+                            // Also update the ID of any existing red overlay with this position
+                            document.querySelectorAll(`.redaction-overlay[data-id="${oldId}"]`).forEach((overlay) => {
+                                overlay.dataset.id = newId;
+                            });
+
+                            // Also try by position to catch any without the correct ID
+                            document.querySelectorAll(".redaction-overlay").forEach((overlay) => {
+                                const overlayLeft = parseInt(overlay.style.left);
+                                const overlayTop = parseInt(overlay.style.top);
+                                const overlayWidth = parseInt(overlay.style.width);
+                                const overlayHeight = parseInt(overlay.style.height);
+
+                                // Check if position is close enough (5px tolerance)
+                                const isPositionMatch = Math.abs(overlayLeft - r.x) < 5 && Math.abs(overlayTop - r.y) < 5 && Math.abs(overlayWidth - r.width) < 5 && Math.abs(overlayHeight - r.height) < 5;
+
+                                if (isPositionMatch) {
+                                    overlay.dataset.id = newId;
+                                }
+                            });
+                        } else {
+                            r.id = newId; // Still update the ID even if it's the same value
+                        }
+                    });
+                } catch (resetError) {
+                    console.warn("Could not reset redactor state before saving:", resetError);
+                }
+
+                redactor.save_redacted_pdf();
+                updateStatus("PDF saved successfully");
+            } catch (error) {
+                console.error("Error saving PDF:", error);
+                updateStatus("Error saving PDF");
+            }
+        }
+
+        // Add a selection to the redactor and handle overlay hiding
+        function addSelectionToRedactor(x, y, width, height, page) {
+            // Store existing number of divs as a baseline
+            const divCount = document.querySelectorAll("div").length;
+
+            // Add selection to the redactor
+            const selectionId = redactor.add_selection(x, y, width, height, page);
+
+            // Find any newly added divs that might be overlays
+            const newDivs = Array.from(document.querySelectorAll("div")).filter((div, index) => {
+                return index >= divCount && div.style.position === "absolute" && !div.classList.contains("redaction-overlay") && !div.classList.contains("temp-selection");
+            });
+
+            // Hide any WASM-created overlays
+            newDivs.forEach((div) => {
+                div.style.display = "none";
+                div.style.visibility = "hidden";
+                div.style.opacity = "0";
+                div.style.pointerEvents = "none";
+            });
+
+            return selectionId;
+        }
+
+        // Function to highlight a redaction in the UI
+        function highlightRedaction(id) {
+            // Remove highlight from all redactions
+            document.querySelectorAll(".redaction-overlay.highlighted").forEach((el) => {
+                el.classList.remove("highlighted");
+            });
+
+            // Find the redaction element by ID
+            const redactionOverlays = document.querySelectorAll(`.redaction-overlay[data-id="${id}"]`);
+
+            if (redactionOverlays.length > 0) {
+                // Add highlight class to the found redaction
+                redactionOverlays.forEach((overlay) => overlay.classList.add("highlighted"));
+
+                // Scroll to the redaction
+                const overlay = redactionOverlays[0];
+
+                // Find the page container
+                const pageContainer = overlay.closest(".page-container");
+                if (pageContainer) {
+                    // Scroll the page into view
+                    pageContainer.scrollIntoView({ behavior: "smooth", block: "center" });
+
+                    // Remove the highlight after 3 seconds
+                    setTimeout(() => {
+                        overlay.classList.remove("highlighted");
+                    }, 3000);
+                }
+            } else {
+                // If we can't find by ID, try to find by position
+                const redaction = redactionsList.find((r) => r.id === id);
+                if (redaction) {
+                    // Find all redaction overlays
+                    const allOverlays = document.querySelectorAll(".redaction-overlay");
+
+                    // Find by position
+                    allOverlays.forEach((overlay) => {
+                        const overlayLeft = parseInt(overlay.style.left);
+                        const overlayTop = parseInt(overlay.style.top);
+                        const overlayWidth = parseInt(overlay.style.width);
+                        const overlayHeight = parseInt(overlay.style.height);
+
+                        // Check if position matches
+                        const isPositionMatch = Math.abs(overlayLeft - redaction.x) < 5 && Math.abs(overlayTop - redaction.y) < 5 && Math.abs(overlayWidth - redaction.width) < 5 && Math.abs(overlayHeight - redaction.height) < 5;
+
+                        if (isPositionMatch) {
+                            overlay.classList.add("highlighted");
+
+                            // Set the ID for future reference
+                            overlay.dataset.id = id;
+
+                            // Scroll into view
+                            const pageContainer = overlay.closest(".page-container");
+                            if (pageContainer) {
+                                pageContainer.scrollIntoView({ behavior: "smooth", block: "center" });
+                            }
+
+                            // Remove highlight after 3 seconds
+                            setTimeout(() => {
+                                overlay.classList.remove("highlighted");
+                            }, 3000);
+                        }
+                    });
+                }
+            }
+        }
+
+        // Function to toggle redaction visibility
+        function toggleRedactionVisibility(id) {
+            console.log(`Toggle function called for ID: ${id}`);
+
+            // Find the toggle button to get the current visibility state
+            const toggleButton = document.querySelector(`.visibility-toggle[data-id="${id}"]`);
+            if (!toggleButton) {
+                console.error(`Toggle button not found for ID: ${id}`);
+                return;
+            }
+
+            // Get the icon element to determine current state
+            const eyeIcon = toggleButton.querySelector("i");
+            // If the icon shows an eye-slash, it means we're currently hidden and need to show
+            // If the icon shows an eye, it means we're currently visible and need to hide
+            const shouldHide = eyeIcon.classList.contains("fa-eye-slash") ? false : true;
+
+            console.log(`Should ${shouldHide ? "hide" : "show"} redactions with ID: ${id}`);
+
+            // Find the redaction data
+            const redaction = redactionsList.find((r) => r.id == id);
+            if (!redaction) {
+                console.error(`No redaction found with ID: ${id}`);
+                return;
+            }
+
+            const pageNum = redaction.page;
+
+            // Find all elements related to this redaction
+            const redactionOverlays = document.querySelectorAll(`.redaction-overlay[data-id="${id}"]`);
+            console.log(`Found ${redactionOverlays.length} red overlays by ID`);
+
+            // Find black redaction boxes by ID
+            let redactionHighlights = Array.from(document.querySelectorAll(`.redaction-highlight[data-id="${id}"]`));
+            console.log(`Found ${redactionHighlights.length} black boxes by ID`);
+
+            // If we didn't find any highlights by ID, try by position on the right page
+            if (redactionHighlights.length === 0) {
+                redactionHighlights = Array.from(document.querySelectorAll(`.redaction-highlight[data-page="${pageNum}"]`)).filter((highlight) => {
+                    const left = parseFloat(highlight.style.left || "0");
+                    const width = parseFloat(highlight.style.width || "0");
+                    const height = parseFloat(highlight.style.height || "0");
+
+                    return Math.abs(left - redaction.x) < 10 && Math.abs(width - redaction.width) < 10 && Math.abs(height - redaction.height) < 10;
+                });
+
+                if (redactionHighlights.length > 0) {
+                    console.log(`Found ${redactionHighlights.length} black boxes by position match`);
+
+                    // Set the ID on these elements for future reference
+                    redactionHighlights.forEach((highlight) => {
+                        highlight.dataset.id = id;
+                    });
+                }
+            }
+
+            // Toggle the visibility of the red selection overlays
+            redactionOverlays.forEach((overlay) => {
+                try {
+                    if (shouldHide) {
+                        // Hide the overlay
+                        overlay.classList.add("hidden");
+                        overlay.style.display = "none";
+                        overlay.style.visibility = "hidden";
+                        overlay.style.opacity = "0";
+                    } else {
+                        // Show the overlay
+                        overlay.classList.remove("hidden");
+                        overlay.style.display = "block";
+                        overlay.style.visibility = "visible";
+                        overlay.style.opacity = "1";
+                    }
+                } catch (err) {
+                    console.error("Error toggling overlay visibility:", err);
+                }
+            });
+
+            // Toggle the visibility of the black redaction boxes
+            redactionHighlights.forEach((highlight) => {
+                try {
+                    if (shouldHide) {
+                        // Hide the redaction
+                        highlight.classList.add("hidden");
+                        highlight.style.display = "none";
+                        highlight.style.visibility = "hidden";
+                        highlight.style.opacity = "0";
+                    } else {
+                        // Show the redaction
+                        highlight.classList.remove("hidden");
+                        highlight.style.display = "block";
+                        highlight.style.visibility = "visible";
+                        highlight.style.opacity = "1";
+                    }
+                } catch (err) {
+                    console.error("Error toggling highlight visibility:", err);
+                }
+            });
+
+            // Update status message
+            updateStatus(`Redaction ${shouldHide ? "hidden" : "shown"}`);
+        }
+
+        // Store default redaction styles
+        const redactionStyles = {
+            backgroundColor: "#e11d48",
+            borderColor: "#e11d48",
+            borderWidth: 1,
+            opacity: 1.0,
+        };
+
+        // Make redactionStyles accessible to Rust code
+        window.redactionStyles = redactionStyles;
+
+        // Function to initialize style controls
+        function initializeStyleControls() {
+            // Set initial values from the redactionStyles object
+            document.getElementById("redaction-bg-color").value = redactionStyles.backgroundColor;
+            document.getElementById("redaction-border-color").value = redactionStyles.borderColor;
+            document.getElementById("redaction-border-width").value = redactionStyles.borderWidth;
+            document.getElementById("redaction-opacity").value = redactionStyles.opacity * 100;
+
+            // Add event listeners to update styles when changed
+            document.getElementById("redaction-bg-color").addEventListener("change", function (e) {
+                redactionStyles.backgroundColor = e.target.value;
+            });
+
+            document.getElementById("redaction-border-color").addEventListener("change", function (e) {
+                redactionStyles.borderColor = e.target.value;
+            });
+
+            document.getElementById("redaction-border-width").addEventListener("change", function (e) {
+                redactionStyles.borderWidth = parseInt(e.target.value);
+            });
+
+            document.getElementById("redaction-opacity").addEventListener("change", function (e) {
+                redactionStyles.opacity = parseInt(e.target.value) / 100;
+            });
+
+            // Apply styles button
+            document.getElementById("menu-apply-styles").addEventListener("click", function (e) {
+                e.preventDefault();
+                applyStylesToAllRedactions();
+                updateStatus("Redaction styles updated");
+            });
+        }
+
+        // Function to apply styles to all redaction overlays
+        function applyStylesToAllRedactions() {
+            // Apply to selection overlays (red boxes)
+            document.querySelectorAll(".redaction-overlay").forEach((overlay) => {
+                overlay.style.backgroundColor = hexToRgba(redactionStyles.backgroundColor, redactionStyles.opacity);
+                overlay.style.border = `${redactionStyles.borderWidth}px dashed ${redactionStyles.borderColor}`;
+            });
+
+            // Apply to redaction highlights (black boxes)
+            document.querySelectorAll(".redaction-highlight").forEach((highlight) => {
+                highlight.style.backgroundColor = redactionStyles.backgroundColor;
+                highlight.style.border = `${redactionStyles.borderWidth}px solid ${redactionStyles.borderColor}`;
+            });
+        }
+
+        // Function to create RGBA from hex color
+        function hexToRgba(hex, alpha = 1) {
+            // Remove the hash if present
+            hex = hex.replace("#", "");
+
+            // Parse the hex values
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+
+            // Return rgba value
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+
+        // Apply style to a new redaction overlay
+        function applyStylesToOverlay(overlay) {
+            overlay.style.backgroundColor = hexToRgba(redactionStyles.backgroundColor, redactionStyles.opacity);
+            overlay.style.border = `${redactionStyles.borderWidth}px dashed ${redactionStyles.borderColor}`;
+        }
+
+        // Modify addRedactionOverlay to apply current styles
+        const originalAddRedactionOverlay = addRedactionOverlay;
+        addRedactionOverlay = function (redaction) {
+            originalAddRedactionOverlay(redaction);
+
+            // Find the overlay we just created and apply styles
+            const overlay = document.querySelector(`.redaction-overlay[data-id="${redaction.id}"]`);
+            if (overlay) {
+                applyStylesToOverlay(overlay);
+            }
+        };
+
+        // Setup help modal functionality
+        function setupHelpFunctions() {
+            // How to Use modal
+            const howToUseLink = document.querySelector("#help-how-to-use");
+            const howToUseModal = document.getElementById("how-to-use-modal");
+            const closeButtons = document.querySelectorAll(".modal-close");
+
+            // About modal
+            const aboutLink = document.querySelector("#help-about");
+            const aboutModal = document.getElementById("about-modal");
+
+            // License modal is already handled in setupLicenseFunctionality
+            const licenseModal = document.getElementById("license-modal");
+            const licenseLink = document.getElementById("menu-license");
+
+            // Open "How to Use" modal
+            howToUseLink.addEventListener("click", function (e) {
+                e.preventDefault();
+                howToUseModal.classList.remove("hidden");
+            });
+
+            // Open "About" modal
+            aboutLink.addEventListener("click", function (e) {
+                e.preventDefault();
+                aboutModal.classList.remove("hidden");
+            });
+
+            // Open "License" modal from menu
+            licenseLink.addEventListener("click", function (e) {
+                e.preventDefault();
+                window.updateLicenseDisplay();
+                licenseModal.classList.remove("hidden");
+            });
+
+            // Close modal when clicking close buttons
+            closeButtons.forEach((button) => {
+                button.addEventListener("click", function () {
+                    howToUseModal.classList.add("hidden");
+                    aboutModal.classList.add("hidden");
+                    licenseModal.classList.add("hidden");
+                });
+            });
+
+            // Close modal when clicking outside the content
+            [howToUseModal, aboutModal, licenseModal].forEach((modal) => {
+                modal.addEventListener("click", function (e) {
+                    if (e.target === modal) {
+                        modal.classList.add("hidden");
+                    }
+                });
+            });
+
+            // Close modal with Escape key
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") {
+                    howToUseModal.classList.add("hidden");
+                    aboutModal.classList.add("hidden");
+                    licenseModal.classList.add("hidden");
+                }
+            });
+        }
+
+        // Check if we need to update redaction coordinates for position changes
+        checkRedactionPositions();
+
+        // Initialize license functionality
+
+        // Setup help modal functionality
+        setupHelpFunctions();
+
+        function setupLicenseFunctionality() {
+            // Variables to track license state
+            let saveCount = localStorage.getItem("pdfRedactorSaveCount") || 0;
+            let licenseKey = localStorage.getItem("pdfRedactorLicenseKey") || "";
+            let isLicensed = false;
+
+            // License modal elements
+            const licenseModal = document.getElementById("license-modal");
+            const licenseKeyInput = document.getElementById("license-key-input");
+            const activateLicenseBtn = document.getElementById("activate-license-btn");
+            const licenseMessage = document.getElementById("license-message");
+            const licenseTrialInfo = document.getElementById("license-trial-info");
+            const licenseActiveContainer = document.getElementById("license-active-container");
+            const licenseActiveInfo = document.getElementById("license-active-info");
+            const licenseCustomerInfo = document.getElementById("license-customer-info");
+            const licenseExpiryInfo = document.getElementById("license-expiry-info");
+
+            // Function to update license display - make it globally available
+            window.updateLicenseDisplay = function () {
+                // Parse saveCount as integer
+                saveCount = parseInt(saveCount) || 0;
+
+                // Check if user has a valid license
+                if (licenseKey) {
+                    try {
+                        const licenseInfo = validateLicenseKey(licenseKey);
+
+                        // Valid license
+                        if (licenseInfo && licenseInfo.valid) {
+                            // Update state
+                            isLicensed = true;
+
+                            // Show license container
+                            licenseActiveContainer.classList.remove("hidden");
+
+                            // Update trial info
+                            licenseTrialInfo.textContent = "Unlimited document saves available";
+
+                            // Update active info
+                            licenseActiveInfo.textContent = "Active - Thank you for your support!";
+
+                            // Custom license info (if available)
+                            if (licenseInfo.customer) {
+                                // Set customer info
+                                licenseCustomerInfo.textContent = licenseInfo.customer;
+
+                                // Handle expiry date
+                                if (licenseInfo.expires_at) {
+                                    try {
+                                        const expiryDate = new Date(licenseInfo.expires_at);
+                                        licenseExpiryInfo.textContent = expiryDate.toLocaleDateString(undefined, {
+                                            year: "numeric",
+                                            month: "long",
+                                            day: "numeric",
+                                        });
+                                    } catch (e) {
+                                        licenseExpiryInfo.textContent = licenseInfo.expires_at;
+                                    }
+                                } else {
+                                    licenseExpiryInfo.textContent = "Lifetime";
+                                }
+                            } else {
+                                // Generic info (shouldn't happen with new validation)
+                                licenseCustomerInfo.textContent = "Verified User";
+                                licenseExpiryInfo.textContent = "Lifetime";
+                            }
+                        } else {
+                            // Invalid license - clear it from storage
+                            console.warn("Invalid license detected during display update");
+                            localStorage.removeItem("pdfRedactorLicenseKey");
+                            licenseKey = "";
+
+                            // Reset to trial mode
+                            isLicensed = false;
+                            licenseActiveContainer.classList.add("hidden");
+                            const remainingSaves = Math.max(0, 10 - saveCount);
+                            licenseTrialInfo.textContent = `${remainingSaves} document ${remainingSaves === 1 ? "save" : "saves"} remaining`;
+                        }
+                    } catch (e) {
+                        // Error validating license - clear it from storage
+                        console.error("Error validating license during display update", e);
+                        localStorage.removeItem("pdfRedactorLicenseKey");
+                        licenseKey = "";
+
+                        // Reset to trial mode
+                        isLicensed = false;
+                        licenseActiveContainer.classList.add("hidden");
+                        const remainingSaves = Math.max(0, 10 - saveCount);
+                        licenseTrialInfo.textContent = `${remainingSaves} document ${remainingSaves === 1 ? "save" : "saves"} remaining`;
+                    }
+                } else {
+                    // No license
+                    isLicensed = false;
+                    licenseActiveContainer.classList.add("hidden");
+                    const remainingSaves = Math.max(0, 10 - saveCount);
+                    licenseTrialInfo.textContent = `${remainingSaves} document ${remainingSaves === 1 ? "save" : "saves"} remaining`;
+                }
+
+                // If there's a license key in storage, show it in the input
+                if (licenseKey) {
+                    licenseKeyInput.value = licenseKey;
+                } else {
+                    licenseKeyInput.value = "";
+                }
+            };
+
+            // Function to properly parse and validate license keys
+            function validateLicenseKey(key) {
+                try {
+                    // First try to use the Rust validation function if available
+                    if (window.redactorInstance && typeof window.redactorInstance.validate_license === "function") {
+                        return window.redactorInstance.validate_license(key);
+                    }
+                } catch (e) {
+                    console.warn("Failed to use Rust license validation, falling back to JS validation", e);
+                }
+
+                // Handle JWT-format license keys
+                if (key && key.startsWith("PDFRP-")) {
+                    try {
+                        // Extract just the first part (payload) and decode it
+                        const jwt = key.substring(6);
+                        const parts = jwt.split(".");
+
+                        if (parts.length < 1) {
+                            console.warn("Invalid license key format");
+                            return false;
+                        }
+
+                        // Helper function for base64 url decoding
+                        function base64UrlDecode(str) {
+                            // Convert base64url to regular base64
+                            let base64 = str.replace(/-/g, "+").replace(/_/g, "/");
+
+                            // Add padding if needed
+                            while (base64.length % 4) {
+                                base64 += "=";
+                            }
+
+                            try {
+                                // Decode and return
+                                return atob(base64);
+                            } catch (e) {
+                                console.warn("Base64 decode error:", e);
+                                return null;
+                            }
+                        }
+
+                        // Only decode the payload (first part)
+                        const decodedPayload = base64UrlDecode(parts[0]);
+
+                        if (!decodedPayload) {
+                            console.warn("Failed to decode license payload");
+                            return false;
+                        }
+
+                        try {
+                            // Parse the JSON payload
+                            const payload = JSON.parse(decodedPayload);
+
+                            // Validate required fields
+                            if (!payload.customer) {
+                                console.warn("Invalid license: missing customer information");
+                                return false;
+                            }
+
+                            // Return the license info
+                            return {
+                                valid: true,
+                                customer: payload.customer,
+                                expires_at: payload.expires_at || "Lifetime",
+                            };
+                        } catch (e) {
+                            console.warn("Error parsing license JSON:", e);
+                            return false;
+                        }
+                    } catch (e) {
+                        console.warn("Error parsing license key:", e);
+                        return false;
+                    }
+                }
+
+                // Not a valid key
+                return false;
+            }
+
+            // Handle license key activation
+            activateLicenseBtn.addEventListener("click", function () {
+                // Get the key and clean any whitespace
+                const key = licenseKeyInput.value.trim();
+
+                if (!key) {
+                    licenseMessage.textContent = "Please enter a license key.";
+                    licenseMessage.className = "license-message error";
+                    return;
+                }
+
+                if (!key.startsWith("PDFRP-")) {
+                    licenseMessage.textContent = 'Invalid license key format. License keys must start with "PDFRP-".';
+                    licenseMessage.className = "license-message error";
+                    return;
+                }
+
+                try {
+                    // Store the original key exactly as entered
+                    const originalKey = key;
+                    const licenseInfo = validateLicenseKey(originalKey);
+
+                    if (licenseInfo && licenseInfo.valid) {
+                        // Success! Store the exact original key as entered
+                        localStorage.setItem("pdfRedactorLicenseKey", originalKey);
+                        licenseKey = originalKey;
+                        isLicensed = true;
+
+                        // Update the UI
+                        licenseMessage.textContent = "License activated successfully!";
+                        licenseMessage.className = "license-message success";
+                        window.updateLicenseDisplay();
+                    } else {
+                        licenseMessage.textContent = "Invalid license key. The key could not be verified.";
+                        licenseMessage.className = "license-message error";
+                    }
+                } catch (e) {
+                    console.error("License validation error:", e);
+                    licenseMessage.textContent = "License validation error: " + (e.message || "Unknown error");
+                    licenseMessage.className = "license-message error";
+                }
+            });
+
+            // Override the original handleSavePDF function to check for license
+            const originalHandleSavePDF = handleSavePDF;
+            handleSavePDF = function () {
+                // Re-check license status to ensure it's still valid
+                if (licenseKey) {
+                    try {
+                        const licenseInfo = validateLicenseKey(licenseKey);
+                        isLicensed = licenseInfo && licenseInfo.valid;
+                    } catch (e) {
+                        console.error("Error validating license during save:", e);
+                        isLicensed = false;
+                    }
+                } else {
+                    isLicensed = false;
+                }
+
+                // Check if the user has a license or has saves remaining
+                if (isLicensed || saveCount < 10) {
+                    // Call the original save function first to ensure the PDF is saved
+                    originalHandleSavePDF();
+
+                    // If not licensed, increment the save count and update UI
+                    if (!isLicensed) {
+                        saveCount++;
+                        localStorage.setItem("pdfRedactorSaveCount", saveCount);
+
+                        // Update the UI in real-time to show remaining saves
+                        const remainingSaves = Math.max(0, 10 - saveCount);
+
+                        // Update both save counters
+                        const headerSavesRemaining = document.getElementById("header-saves-remaining");
+                        const bottomSavesRemaining = document.getElementById("saves-remaining");
+
+                        if (headerSavesRemaining) {
+                            headerSavesRemaining.textContent = remainingSaves;
+                        }
+
+                        if (bottomSavesRemaining) {
+                            bottomSavesRemaining.textContent = remainingSaves;
+                        }
+
+                        // Update license display in modal
+                        window.updateLicenseDisplay();
+
+                        // Show message about remaining saves
+                        let message = `Document saved. ${remainingSaves} ${remainingSaves === 1 ? "save" : "saves"} remaining in trial.`;
+
+                        if (remainingSaves <= 3 && remainingSaves > 0) {
+                            message += " Please purchase a license to continue using PDF Redactor Pro.";
+                        }
+
+                        updateStatus(message);
+
+                        // If no saves left, show the license modal
+                        if (remainingSaves === 0) {
+                            setTimeout(() => {
+                                updateStatus("Trial limit reached. Please purchase a license to continue saving documents.");
+                                licenseModal.classList.remove("hidden");
+                            }, 1000);
+                        }
+                    }
+                } else {
+                    // No saves remaining, show license modal
+                    updateStatus("Trial limit reached. Please purchase a license to continue saving documents.");
+                    window.updateLicenseDisplay();
+                    licenseModal.classList.remove("hidden");
+                }
+            };
+
+            // Initialize license display on startup
+            window.updateLicenseDisplay();
+
+            // Add license modal to the list of modals to be closed with Escape key and outside clicks
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") {
+                    licenseModal.classList.add("hidden");
+                }
+            });
+
+            licenseModal.addEventListener("click", function (e) {
+                if (e.target === licenseModal) {
+                    licenseModal.classList.add("hidden");
+                }
+            });
+
+            // Add license modal close buttons to the existing close handlers
+            document.querySelectorAll("#license-modal .modal-close").forEach((button) => {
+                button.addEventListener("click", function () {
+                    licenseModal.classList.add("hidden");
+                });
+            });
+
+            // Handle header buttons
+            document.getElementById("header-about-btn").addEventListener("click", function () {
+                document.getElementById("about-modal").classList.remove("hidden");
+            });
+
+            document.getElementById("header-email-btn").addEventListener("click", function () {
+                window.location.href = "mailto:maginnist@gmail.com?subject=PDF%20Redactor%20Pro%20Support";
+            });
+
+            document.getElementById("header-license-btn").addEventListener("click", function () {
+                window.updateLicenseDisplay();
+                licenseModal.classList.remove("hidden");
+            });
+
+            // Handle license status bar
+            document.getElementById("learn-more-link").addEventListener("click", function () {
+                window.updateLicenseDisplay();
+                licenseModal.classList.remove("hidden");
+            });
+
+            // Update both license status indicators when display is updated
+            const originalUpdateLicenseDisplay = window.updateLicenseDisplay;
+            window.updateLicenseDisplay = function () {
+                originalUpdateLicenseDisplay();
+
+                // Update header status - add null checks
+                const headerSavesRemaining = document.getElementById("header-saves-remaining");
+                const bottomSavesRemaining = document.getElementById("saves-remaining");
+
+                // Update both save counters if elements exist
+                const remainingSaves = Math.max(0, 10 - saveCount);
+
+                if (headerSavesRemaining) {
+                    headerSavesRemaining.textContent = remainingSaves;
+                }
+
+                if (bottomSavesRemaining) {
+                    bottomSavesRemaining.textContent = remainingSaves;
+                }
+
+                // Update license status bar if licensed
+                if (isLicensed) {
+                    const licenseStatusBar = document.getElementById("license-status-bar");
+                    if (licenseStatusBar) {
+                        licenseStatusBar.innerHTML = "<div>License Status: <strong>Licensed</strong>. Thank you for your support!</div>" + '<div><a id="view-license-link">View license details</a></div>';
+
+                        // Add event listener AFTER modifying the DOM
+                        setTimeout(() => {
+                            const viewLicenseLink = document.getElementById("view-license-link");
+                            if (viewLicenseLink) {
+                                viewLicenseLink.addEventListener("click", function () {
+                                    licenseModal.classList.remove("hidden");
+                                });
+                            }
+                        }, 0);
+                    }
+
+                    // Update header status
+                    const headerLicenseStatus = document.getElementById("header-license-status");
+                    if (headerLicenseStatus) {
+                        headerLicenseStatus.innerHTML = '<i class="fas fa-check-circle"></i> Licensed';
+                    }
+                }
+            };
+
+            // Initialize license display on startup
+            window.updateLicenseDisplay();
+        }</script><div id="license-status-bar"class="license-status-bar"><div>License Status: <strong>Unlicensed</strong>. Saves remaining: <span id="saves-remaining">10</span></div><div><a id="learn-more-link">Learn more</a></div></div>

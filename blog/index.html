@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | PDF Redactor - Document Redaction Software</title>
+    <meta name="description" content="Learn about document redaction, legal compliance, and PDF security with PDF Redactor's expert insights and tutorials.">
+    <meta name="keywords" content="PDF redaction, document security, legal compliance, GDPR, HIPAA, document protection">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PDF Redactor Blog - Document Security & Legal Compliance">
+    <meta property="og:description" content="Expert insights on document redaction, legal compliance, and PDF security.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="PDF Redactor Blog">
+    <meta property="twitter:description" content="Expert insights on document redaction, legal compliance, and PDF security.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #64748b;
+            --text-color: #1e293b;
+            --text-light: #64748b;
+            --bg-color: #ffffff;
+            --bg-alt: #f8fafc;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: var(--bg-alt);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--border-color);
+            background: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+
+        .blog-card-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .blog-card-title a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-card-title a:hover {
+            color: var(--primary-color);
+        }
+
+        .blog-card-description {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .blog-card-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card-tag {
+            background: var(--bg-alt);
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .blog-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .blog-card-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-light);
+        }
+
+        .no-posts i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .cta-section {
+            background: var(--bg-alt);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .cta-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .cta-content p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+        }
+
+        .footer {
+            background: var(--text-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">PDF Redactor</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">PDF Tool</a></li>
+                    <li><a href="index.html">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>PDF Redactor Blog</h1>
+            <p>Expert insights on document redaction, legal compliance, and PDF security. Stay informed about best practices and industry developments.</p>
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search articles..." id="searchInput">
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="blog-filters" id="blogFilters">
+            <a href="#" class="filter-btn active" data-tag="all">All Posts</a>
+            <a href="#" class="filter-btn" data-tag="compliance">Compliance</a><a href="#" class="filter-btn" data-tag="education">Education</a><a href="#" class="filter-btn" data-tag="ferpa">FERPA</a><a href="#" class="filter-btn" data-tag="guide">Guide</a><a href="#" class="filter-btn" data-tag="how-to">How-to</a><a href="#" class="filter-btn" data-tag="legal">Legal</a><a href="#" class="filter-btn" data-tag="pdf">PDF</a><a href="#" class="filter-btn" data-tag="redaction">Redaction</a><a href="#" class="filter-btn" data-tag="teachers">Teachers</a><a href="#" class="filter-btn" data-tag="technology">Technology</a><a href="#" class="filter-btn" data-tag="tutorial">Tutorial</a>
+        </div>
+
+        <div class="blog-grid" id="blogGrid">
+            
+                    <article class="blog-card">
+                        <div class="blog-card-image">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span><i class="far fa-calendar"></i> Jan 30, 2024</span>
+                                <span><i class="far fa-clock"></i> 10 min read</span>
+                            </div>
+                            <h2 class="blog-card-title">
+                                <a href="ferpa-compliance-teachers-guide.html">How PDF Redactor Pro Helps Teachers Stay FERPA Compliant: Technology Meets Education Law</a>
+                            </h2>
+                            <p class="blog-card-description">Discover how PDF Redactor Pro's advanced redaction technology helps teachers meet FERPA requirements while protecting student privacy and avoiding costly violations.</p>
+                            <div class="blog-card-tags">
+                                <span class="blog-card-tag">FERPA</span><span class="blog-card-tag">Education</span><span class="blog-card-tag">Teachers</span><span class="blog-card-tag">Legal</span><span class="blog-card-tag">Compliance</span><span class="blog-card-tag">Technology</span>
+                            </div>
+                            <a href="ferpa-compliance-teachers-guide.html" class="blog-card-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-card-image">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="blog-card-content">
+                            <div class="blog-card-meta">
+                                <span><i class="far fa-calendar"></i> Jan 29, 2024</span>
+                                <span><i class="far fa-clock"></i> 7 min read</span>
+                            </div>
+                            <h2 class="blog-card-title">
+                                <a href="pdf-redaction-tutorial.html">How to Use PDF Redactor Pro: Complete Step-by-Step Guide</a>
+                            </h2>
+                            <p class="blog-card-description">Master PDF Redactor Pro with this comprehensive tutorial. Learn to securely redact sensitive information from PDF documents using our professional browser-based tool.</p>
+                            <div class="blog-card-tags">
+                                <span class="blog-card-tag">Tutorial</span><span class="blog-card-tag">PDF</span><span class="blog-card-tag">How-to</span><span class="blog-card-tag">Guide</span><span class="blog-card-tag">Redaction</span>
+                            </div>
+                            <a href="pdf-redaction-tutorial.html" class="blog-card-link">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+        </div>
+
+        <div class="no-posts" id="noPosts" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>No posts found</h3>
+            <p>Try adjusting your search terms or filters.</p>
+        </div>
+    </main>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Secure Your Documents?</h2>
+            <p>Try our professional PDF redaction tool to protect sensitive information in your documents.</p>
+            <a href="../index.html" class="cta-button">
+                <i class="fas fa-shield-alt"></i>
+                Try PDF Redactor
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 PDF Redactor. Professional document redaction software.</p>
+    </footer>
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const blogGrid = document.getElementById('blogGrid');
+        const noPosts = document.getElementById('noPosts');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value.toLowerCase();
+            filterPosts();
+        });
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Update active filter
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                currentFilter = btn.dataset.tag;
+                filterPosts();
+            });
+        });
+
+        function filterPosts() {
+            const blogCards = document.querySelectorAll('.blog-card');
+            let visibleCount = 0;
+
+            blogCards.forEach(card => {
+                const title = card.querySelector('.blog-card-title').textContent.toLowerCase();
+                const description = card.querySelector('.blog-card-description').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.blog-card-tag')).map(tag => tag.textContent.toLowerCase());
+                
+                const matchesSearch = !currentSearch || title.includes(currentSearch) || description.includes(currentSearch) || tags.some(tag => tag.includes(currentSearch));
+                const matchesFilter = currentFilter === 'all' || tags.includes(currentFilter);
+                
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no posts message
+            if (visibleCount === 0) {
+                noPosts.style.display = 'block';
+                blogGrid.style.display = 'none';
+            } else {
+                noPosts.style.display = 'none';
+                blogGrid.style.display = 'grid';
+            }
+        }
+    </script>
+</body>
+</html> 
